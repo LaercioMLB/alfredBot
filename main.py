@@ -3,6 +3,7 @@ from discord.ext import commands
 import random
 from decouple import config
 
+#VERIFICAR INTENTS DO DISCORD (OBRIGATÓRIO)
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
