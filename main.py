@@ -10,6 +10,17 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 jogadores = {}  # Dicionário para armazenar as escolhas dos jogadores
 jogo_em_andamento = False  # Variável para controlar se um jogo está em andamento
 
+
+#Comando limpar chat
+@bot.command()
+async def limpar(ctx, quantidade: int):
+    if ctx.author.guild_permissions.manage_messages:
+        await ctx.channel.purge(limit=quantidade + 1)
+        await ctx.send(f"{quantidade} mensagens foram apagadas por {ctx.author.mention}.", delete_after=5)
+    else:
+        await ctx.send("Você não tem permissão para usar este comando.")
+
+#Repostas basicas do BOT
 @bot.event
 async def on_ready():
     print(f'Estou conectado como {bot.user.name} - {bot.user.id}')
@@ -27,6 +38,9 @@ async def ping(ctx):
     latency = round(bot.latency * 1000)
     await ctx.send(f"Pong! {latency}ms")
 
+#------------------------------------------------------------------------#
+
+#JOGO IMPAR PAR
 @bot.command()
 async def parouimpar(ctx):
     global jogo_em_andamento
@@ -98,7 +112,8 @@ async def inicia_jogo(ctx):
 
     jogo_em_andamento = False
     jogadores.clear()
-
+    
+#------------------------------------------------------------------------#
 token = config('TOKEN_SERVER')
 
 if token is not None:
