@@ -12,6 +12,16 @@ jogadores = {}  # Dicionário para armazenar as escolhas dos jogadores
 jogo_em_andamento = False  # Variável para controlar se um jogo está em andamento
 
 
+@client.event
+async def on_member_join(member):
+    principal = client.get_channel(1064346596856299540)
+    regras = cclient.get_channel(1162776573682921535)
+    mensagem = await principal.send("Bem vindo {member.mention}! Sou Alfred, o mordomo da casa. Leias as regras em {regras.mention}")
+
+@bot.event
+async def on_ready():
+    print(f'Estou conectado como {bot.user.name} - {bot.user.id}')
+
 #Comando limpar chat
 @bot.command()
 async def limpar(ctx, quantidade: int):
@@ -22,10 +32,6 @@ async def limpar(ctx, quantidade: int):
         await ctx.send("Você não tem permissão para usar este comando.")
 
 #Repostas basicas do BOT
-@bot.event
-async def on_ready():
-    print(f'Estou conectado como {bot.user.name} - {bot.user.id}')
-
 @bot.command()
 async def teste(ctx):
     await ctx.send("Bot está no ar!")
