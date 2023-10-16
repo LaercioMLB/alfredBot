@@ -6,7 +6,8 @@ import asyncio
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-# Variáveis para controlar o estado do jogo
+
+# Variáveis para controlar o estado do jogo IMPAR OU PAR
 jogadores = {}  # Dicionário para armazenar as escolhas dos jogadores
 jogo_em_andamento = False  # Variável para controlar se um jogo está em andamento
 
@@ -112,7 +113,7 @@ async def inicia_jogo(ctx):
 
     jogo_em_andamento = False
     jogadores.clear()
-    
+
 #------------------------------------------------------------------------#
 token = config('TOKEN_SERVER')
 
